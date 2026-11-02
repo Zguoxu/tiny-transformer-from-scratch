@@ -16,6 +16,14 @@ No `nn.Transformer` or `nn.MultiheadAttention`. Designed for learners who know t
 - **A complete workflow**: build vocabularies → train the model → save the loss curve → generate a Chinese translation.
 - **Chinese code comments**: explanations of key components and training steps for Chinese-speaking learners.
 
+## Architecture
+
+![Transformer encoder–decoder architecture](assets/architecture.svg)
+
+The encoder and decoder each stack two layers. In decoder cross-attention, queries come from the decoder, while keys and values come from the encoder output. Each attention and feed-forward sublayer uses a residual connection followed by layer normalization, matching the implementation.
+
+[Download PNG](assets/architecture.png)
+
 ## Example
 
 Input:
@@ -110,11 +118,18 @@ MPLBACKEND=Agg python transformer.py
 tiny-transformer-from-scratch/
 ├── README.md
 ├── README.zh-CN.md
+├── LICENSE
 ├── transformer.py
 ├── requirements.txt
 ├── .gitignore
 └── assets/
+    ├── architecture.svg
+    ├── architecture.png
     └── loss_curve.png
 ```
 
 If this project helps you understand Transformers, give it a ⭐ Star so you can revisit it later. Questions and learning discussions are welcome in Issues.
+
+## License
+
+Released under the [MIT License](LICENSE). You may use, modify, and redistribute this project, including commercially, provided you retain the copyright and license notices. The software is provided without warranty.

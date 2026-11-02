@@ -16,6 +16,14 @@
 - **完整运行流程**：构建词表 → 训练模型 → 保存损失曲线 → 生成中文翻译。
 - **中文注释**：帮助理解关键模块与训练步骤。
 
+## 模型结构
+
+![Transformer 编码器与解码器结构图](assets/architecture.svg)
+
+Encoder 和 Decoder 各堆叠两层。在 Decoder 的交叉注意力中，Q 来自解码器，K、V 来自编码器输出。每个注意力和前馈子层都采用残差连接，再做层归一化，与实际代码保持一致。
+
+[下载 PNG 图片](assets/architecture.png)
+
 ## 运行效果
 
 输入：
@@ -110,11 +118,18 @@ MPLBACKEND=Agg python transformer.py
 tiny-transformer-from-scratch/
 ├── README.md
 ├── README.zh-CN.md
+├── LICENSE
 ├── transformer.py
 ├── requirements.txt
 ├── .gitignore
 └── assets/
+    ├── architecture.svg
+    ├── architecture.png
     └── loss_curve.png
 ```
 
 如果这个项目帮助你理解了 Transformer，欢迎点一个 ⭐ Star，方便以后回来复习。也欢迎通过 Issue 交流学习中的问题。
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。在保留版权和许可声明的前提下，允许使用、修改和分发，包括商业用途。软件不提供担保。
