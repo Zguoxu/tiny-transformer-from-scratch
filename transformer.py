@@ -1,5 +1,6 @@
 import math
 import random
+from pathlib import Path
 import torch
 from torch import nn
 import matplotlib.pyplot as plt
@@ -245,6 +246,13 @@ for epoch in range(100):
 plt.plot(range(1, 101), losses)
 plt.xlabel("Epoch")
 plt.ylabel("Mean sentence loss")
+plt.title("Transformer Training Loss")
+plt.tight_layout()
+# 在显示图表前保存，方便后续在 README 中引用
+curve_path = Path(__file__).resolve().parent / "assets" / "loss_curve.png"
+curve_path.parent.mkdir(parents=True, exist_ok=True)
+plt.savefig(curve_path, dpi=200, bbox_inches="tight")
+print(f"Loss curve saved to: {curve_path}")
 plt.show()
 
 @torch.no_grad()
