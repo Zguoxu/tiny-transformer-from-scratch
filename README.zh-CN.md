@@ -3,6 +3,11 @@
 [English](README.md) | **简体中文**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Zguoxu/tiny-transformer-from-scratch/blob/main/tiny_transformer.ipynb)
+
+**第一次使用？[点击这里，在浏览器中直接运行演示](https://colab.research.google.com/github/Zguoxu/tiny-transformer-from-scratch/blob/main/tiny_transformer.ipynb)，无需在电脑上安装 Python。**
+
+打开后登录 Google 账号，点击顶部菜单 **运行时 → 全部运行** 即可。普通 CPU 运行时就够用，无需 GPU。
+
 **用一个 Python 文件，理解 Transformer 如何完成英译中。**
 
 基于 PyTorch，手动实现 Transformer 的核心结构：从词嵌入、位置编码、多头注意力，到 Encoder、Decoder，再到训练和自回归生成。
@@ -60,7 +65,13 @@ Epoch 100 | loss=0.0010
 
 ## 在浏览器中运行
 
-点击顶部的 **Open in Colab**，选择普通 CPU 运行时，再选择 **运行时 → 全部运行**。双语笔记本按步骤介绍模型、训练并显示损失曲线，还可以修改英文输入尝试翻译。无需在本地配置 Python，运行时需要登录 Google 账号。
+1. [点击这里，用 Google Colab 打开笔记本](https://colab.research.google.com/github/Zguoxu/tiny-transformer-from-scratch/blob/main/tiny_transformer.ipynb)。
+2. 如有提示，登录你的 Google 账号，使用普通 CPU 运行时即可。
+3. 在顶部菜单选择 **运行时 → 全部运行**（英文界面为 **Runtime → Run all**），按顺序执行所有代码块。
+4. 向下滚动，查看训练日志、损失曲线和中文翻译结果。
+5. 在最后一个代码块中修改 `english` 的句子，使用下方显示的词表内单词，再点击代码块左侧的 **▶** 按钮，就能重新翻译。
+
+笔记本提供中英文讲解，无需在本地配置 Python。
 
 ## 快速开始
 
