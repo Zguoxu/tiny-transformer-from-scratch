@@ -2,6 +2,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Zguoxu/tiny-transformer-from-scratch/blob/main/tiny_transformer.ipynb)
 **Understand how a Transformer translates English into Chinese—with a single Python file.**
 
 A small Transformer implemented from scratch in PyTorch, covering token embeddings, positional encoding, multi-head attention, the encoder and decoder, training, and autoregressive generation.
@@ -56,6 +57,10 @@ Epoch 100 | loss=0.0010
 The horizontal axis shows training epochs. The vertical axis shows the average of the per-sentence cross-entropy losses within each epoch. Each run saves the curve to `assets/loss_curve.png`.
 
 This is a small learning demo with only 8 training pairs and fixed vocabularies. Input containing words outside the source vocabulary raises an error. The example input combines familiar training words in a new way; the sample output and low training loss do not demonstrate general translation ability. Results may vary slightly across environments.
+
+## Run in your browser
+
+Click **Open in Colab** above, select a CPU runtime, and choose **Runtime → Run all**. The bilingual notebook walks through the model, trains it, displays the loss curve, and lets you edit the translation input. No local Python setup is needed. You will need to sign in to Google to run it.
 
 ## Quick start
 
@@ -119,6 +124,7 @@ tiny-transformer-from-scratch/
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
+├── tiny_transformer.ipynb
 ├── transformer.py
 ├── requirements.txt
 ├── .gitignore

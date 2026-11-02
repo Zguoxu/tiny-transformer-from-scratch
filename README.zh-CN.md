@@ -2,6 +2,7 @@
 
 [English](README.md) | **简体中文**
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Zguoxu/tiny-transformer-from-scratch/blob/main/tiny_transformer.ipynb)
 **用一个 Python 文件，理解 Transformer 如何完成英译中。**
 
 基于 PyTorch，手动实现 Transformer 的核心结构：从词嵌入、位置编码、多头注意力，到 Encoder、Decoder，再到训练和自回归生成。
@@ -56,6 +57,10 @@ Epoch 100 | loss=0.0010
 横轴为训练轮次，纵轴为每轮各句交叉熵损失的平均值。每次运行会将曲线保存至 `assets/loss_curve.png`。
 
 这是一个学习用的小型演示，训练数据仅有 8 组句对，词表固定，输入包含词表以外的单词时会报错。上面的输入是训练词汇的新组合；示例输出和较低的训练损失不代表模型具有通用翻译能力。不同运行环境下的数值和输出可能略有差异。
+
+## 在浏览器中运行
+
+点击顶部的 **Open in Colab**，选择普通 CPU 运行时，再选择 **运行时 → 全部运行**。双语笔记本按步骤介绍模型、训练并显示损失曲线，还可以修改英文输入尝试翻译。无需在本地配置 Python，运行时需要登录 Google 账号。
 
 ## 快速开始
 
@@ -119,6 +124,7 @@ tiny-transformer-from-scratch/
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
+├── tiny_transformer.ipynb
 ├── transformer.py
 ├── requirements.txt
 ├── .gitignore
