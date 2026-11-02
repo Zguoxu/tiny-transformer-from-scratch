@@ -1,34 +1,36 @@
 # Tiny Transformer from Scratch
 
-**用一个 Python 文件，理解 Transformer 如何完成英译中。**
+**English** | [简体中文](README.zh-CN.md)
 
-基于 PyTorch，手动实现 Transformer 的核心结构：从词嵌入、位置编码、多头注意力，到 Encoder、Decoder，再到训练和自回归生成。
+**Understand how a Transformer translates English into Chinese—with a single Python file.**
 
-不调用 `nn.Transformer` 或 `nn.MultiheadAttention`，适合已经了解 PyTorch 基础、想通过代码理解 Transformer 内部计算过程的学习者。
+A small Transformer implemented from scratch in PyTorch, covering token embeddings, positional encoding, multi-head attention, the encoder and decoder, training, and autoregressive generation.
 
-## 项目特点
+No `nn.Transformer` or `nn.MultiheadAttention`. Designed for learners who know the basics of PyTorch and want to follow the computations inside a Transformer.
 
-- **单文件实现**：模型、数据处理、训练和翻译都在 `transformer.py` 中。
-- **核心模块手写**：包括缩放点积注意力、多头注意力、因果掩码和交叉注意力。
-- **无需下载数据集**：内置 8 组英中句对，模型维度为 32，使用 2 个注意力头、2 层 Encoder 和 2 层 Decoder。
-- **完整运行流程**：构建词表 → 训练模型 → 保存损失曲线 → 生成中文翻译。
-- **中文注释**：帮助理解关键模块与训练步骤。
+## Features
 
-## 运行效果
+- **One Python file**: data processing, the model, training, and translation all live in `transformer.py`.
+- **Core components implemented by hand**: scaled dot-product attention, multi-head attention, causal masking, and cross-attention.
+- **No dataset downloads**: 8 built-in English–Chinese sentence pairs, a model dimension of 32, 2 attention heads, 2 encoder layers, and 2 decoder layers.
+- **A complete workflow**: build vocabularies → train the model → save the loss curve → generate a Chinese translation.
+- **Chinese code comments**: explanations of key components and training steps for Chinese-speaking learners.
 
-输入：
+## Example
+
+Input:
 
 ```text
 there is a black dog under the chair
 ```
 
-一次实际运行的输出：
+Output from an actual run:
 
 ```text
 椅子下面有一只黑色狗
 ```
 
-训练日志：
+Training log:
 
 ```text
 Epoch   1 | loss=2.1297
@@ -39,17 +41,17 @@ Epoch  80 | loss=0.0015
 Epoch 100 | loss=0.0010
 ```
 
-### 训练损失曲线
+### Training loss
 
-![Transformer 在内置 8 组句对上训练 100 轮的损失曲线](assets/loss_curve.png)
+![Transformer training loss over 100 epochs on the 8 built-in sentence pairs](assets/loss_curve.png)
 
-横轴为训练轮次，纵轴为每轮各句交叉熵损失的平均值。每次运行会将曲线保存至 `assets/loss_curve.png`。
+The horizontal axis shows training epochs. The vertical axis shows the average of the per-sentence cross-entropy losses within each epoch. Each run saves the curve to `assets/loss_curve.png`.
 
-这是一个学习用的小型演示，训练数据仅有 8 组句对，词表固定，输入包含词表以外的单词时会报错。上面的输入是训练词汇的新组合；示例输出和较低的训练损失不代表模型具有通用翻译能力。不同运行环境下的数值和输出可能略有差异。
+This is a small learning demo with only 8 training pairs and fixed vocabularies. Input containing words outside the source vocabulary raises an error. The example input combines familiar training words in a new way; the sample output and low training loss do not demonstrate general translation ability. Results may vary slightly across environments.
 
-## 快速开始
+## Quick start
 
-已在 Python 3.12 环境下运行验证，依赖 PyTorch 和 Matplotlib。
+Verified with Python 3.12. Requires PyTorch and Matplotlib.
 
 ```bash
 git clone https://github.com/Zguoxu/tiny-transformer-from-scratch.git
@@ -57,7 +59,7 @@ cd tiny-transformer-from-scratch
 python -m venv .venv
 ```
 
-激活虚拟环境：
+Activate the virtual environment:
 
 ```bash
 # macOS / Linux
@@ -67,46 +69,47 @@ source .venv/bin/activate
 .venv\Scripts\Activate.ps1
 ```
 
-安装依赖并运行：
+Install dependencies and run:
 
 ```bash
 python -m pip install -r requirements.txt
 python transformer.py
 ```
 
-程序会训练 100 轮并保存、显示损失曲线。**关闭图表窗口后**，终端会输出翻译结果。
+The program trains for 100 epochs, then saves and displays the loss curve. **Close the plot window** to continue and see the translation in your terminal.
 
-如果在没有图形界面的服务器上运行，可使用以下命令保存图片并继续输出翻译（macOS / Linux）：
+To save the plot and print the translation on a server without a graphical display, run (macOS / Linux):
 
 ```bash
 MPLBACKEND=Agg python transformer.py
 ```
 
-## 建议阅读顺序
+## Suggested reading order
 
-| 步骤 | 对应代码 | 关注点 |
+| Step | Code | What to look for |
 | --- | --- | --- |
-| 1. 数据与词表 | `en_cn_pairs`、`source_ids`、`target_ids` | 文本如何转换为 token ID，BOS 和 EOS 的作用 |
-| 2. 输入表示 | `TokenEmbedding`、`PositionalEncoding` | 词嵌入与正弦位置编码如何相加 |
-| 3. 注意力机制 | `attention`、`AttentionHead`、`MultiHeadAttention` | Q、K、V，缩放点积与多头拼接 |
-| 4. 编码器 | `EncoderLayer`、`Encoder` | 自注意力、前馈网络、残差连接与层归一化 |
-| 5. 解码器 | `DecoderLayer`、`Decoder` | 因果掩码与对编码器输出的交叉注意力 |
-| 6. 完整模型 | `Transformer` | 编码、解码与词表输出投影 |
-| 7. 训练与生成 | 训练循环、`translate` | 目标序列错位、交叉熵和逐 token 贪心生成 |
+| 1. Data and vocabularies | `en_cn_pairs`, `source_ids`, `target_ids` | Converting text to token IDs; the roles of BOS and EOS |
+| 2. Input representations | `TokenEmbedding`, `PositionalEncoding` | Adding token embeddings and sinusoidal positional encodings |
+| 3. Attention | `attention`, `AttentionHead`, `MultiHeadAttention` | Q, K, V, scaled dot products, and concatenating heads |
+| 4. Encoder | `EncoderLayer`, `Encoder` | Self-attention, feed-forward networks, residual connections, and layer normalization |
+| 5. Decoder | `DecoderLayer`, `Decoder` | Causal masking and cross-attention to encoder outputs |
+| 6. Complete model | `Transformer` | Encoding, decoding, and projecting to the target vocabulary |
+| 7. Training and generation | Training loop, `translate` | Shifted targets, cross-entropy, and greedy token-by-token generation |
 
-## 动手试试
+## Try it yourself
 
-- 修改 `HEADS`，比较不同注意力头数的训练表现，注意 `D` 必须能被 `HEADS` 整除。
-- 修改 `NUM_LAYERS`，观察模型深度变化对训练的影响。
-- 在 `en_cn_pairs` 中增加句对，重新运行以构建词表并训练。
-- 修改最后一行的英文输入，使用现有词表尝试不同的词语组合。
-- 阅读 `attention` 中的因果掩码，理解 Decoder 如何避免看到后续 token。
+- Change `HEADS` and compare training behavior. Make sure `D` is divisible by `HEADS`.
+- Change `NUM_LAYERS` to explore how model depth affects training.
+- Add sentence pairs to `en_cn_pairs`, then rerun to rebuild the vocabularies and train.
+- Edit the English input on the last line to try new combinations of words from the existing vocabulary.
+- Read the causal mask in `attention` to understand how the decoder avoids attending to future tokens.
 
-## 文件结构
+## Project structure
 
 ```text
 tiny-transformer-from-scratch/
 ├── README.md
+├── README.zh-CN.md
 ├── transformer.py
 ├── requirements.txt
 ├── .gitignore
@@ -114,4 +117,4 @@ tiny-transformer-from-scratch/
     └── loss_curve.png
 ```
 
-如果这个项目帮助你理解了 Transformer，欢迎点一个 ⭐ Star，方便以后回来复习。也欢迎通过 Issue 交流学习中的问题。
+If this project helps you understand Transformers, give it a ⭐ Star so you can revisit it later. Questions and learning discussions are welcome in Issues.
